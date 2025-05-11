@@ -17,6 +17,31 @@ const server = http.createServer((req,res)=>{ //creates the server
                 res.end(data)
             }) 
         }
+        else if(req.url ==='/about')
+        {  
+            res.writeHead(200,{"Content-type":"text/html"});
+            fs.readFile('about.html','utf8',(err,data)=>{
+                if(err){
+                    console.error(err);
+                    return;
+                }
+                res.end(data);
+            })
+        }
+        else if(req.url==='/contact-me'){
+            res.writeHead(200,{"Content-type":"text/html"});
+            fs.readFile('contact-me.html','utf8',(error,data)=>{
+                if(err){
+                    console.error(err)
+                    return;
+                }
+                res.end(data)
+            })
+        }
+        else{
+            res.writeHead(404,{"Content-type":"text/html"});
+            res.end('<h1>404 not found</h1>')
+        }
 
         
     }
